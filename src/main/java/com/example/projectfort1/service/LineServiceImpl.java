@@ -31,6 +31,7 @@ public class LineServiceImpl implements LineService {
         // Возвращаем последовательность.
         Line findLine = findLine(line);
         if (findLine != null) {
+            log.info("Sequence получен из базы данных");
             return findLine.getSequence().getData();
         }
 
@@ -74,21 +75,25 @@ public class LineServiceImpl implements LineService {
                         String.format("\"%c\" : %d", characterCount.getCh(), characterCount.getCount()))
                 .collect(Collectors.joining(", "));
 
-        log.info("");
+        log.info("Sequence={} рассчитан и отсортирован", stringResult);
 
         return stringResult;
     }
 
     // Метод ищет линию символов в базе данных
     private Line findLine(String line) {
-        return lineRepository.findByLineContaining(line);
+        Line getLine = lineRepository.findByLineContaining(line);
+        log.info("Выполнен запрос в таблицу lines, где line={}", line);
+
+        return getLine;
     }
 
     @Transactional
     private Line postLine(String line) {
         Line buildLine = LineMapper.buildLine(line);
         Line createLine = lineRepository.save(buildLine);
-        log.info("");
+        log.info("В таблицу lines добавлен новый объект Line={}", createLine);
+
         return createLine;
     }
 
@@ -96,7 +101,8 @@ public class LineServiceImpl implements LineService {
     private Sequence postSequence(String data, Line line) {
         Sequence buildSequence = SequenceMapper.buildSequence(data, line);
         Sequence createSequence = sequenceRepository.save(buildSequence);
-        log.info("");
+        log.info("В таблицу sequences добавлен новый объект Sequence={}", createSequence);
+
         return createSequence;
     }
 }

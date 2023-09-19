@@ -22,7 +22,11 @@ public class LineController {
 
     @GetMapping
     public ResponseEntity<String> getSequence(@RequestParam @Size(min = 1, max = 10000) String line) {
+        log.info("В LineController поступил запрос. Метод getSequence(), параметр={}", line);
+
         String sequence = service.getLetterSequences(line);
+        log.info("Запрос в LineController выполнен успешно. Результат запроса={}", sequence);
+
         return new ResponseEntity<>(sequence, HttpStatus.OK);
     }
 }
