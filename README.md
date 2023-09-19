@@ -54,12 +54,13 @@ http://localhost:8080/lines?line={ваша строка}
 10. Junit 5, Mockito, MockMvc.
 
 ## Инструкция по развёртыванию
+В pgAdmin4 создайте базу данных **lines**.  
 Чтобы запустить приложение в IntelijIdea, зайдите в «Edit Congigurations -> Add new configuration, 
 создайте две конфигурации и добавьте в каждую из них переменные окружения – Environment variables: 
 1. Application – для работы приложения:
 ```
-POSTGRES_PASSWORD=admin;  
-POSTGRES_USER=admin;  
+POSTGRES_USER={ваш логин};
+POSTGRES_PASSWORD={ваш пароль};    
 SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/lines
 ```
 2. Junit – для тестов:
