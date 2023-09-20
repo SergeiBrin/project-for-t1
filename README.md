@@ -54,7 +54,7 @@ http://localhost:8080/lines?line={ваша строка}
 10. Junit 5, Mockito, MockMvc.
 
 ## Инструкция по развёртыванию
-В pgAdmin4 создайте базу данных **lines**.  
+В pgAdmin4 создайте базу данных **lines**.    
 Чтобы запустить приложение в IntelijIdea, зайдите в «Edit Congigurations -> Add new configuration, 
 создайте две конфигурации и добавьте в каждую из них переменные окружения – Environment variables: 
 1. Application – для работы приложения:
